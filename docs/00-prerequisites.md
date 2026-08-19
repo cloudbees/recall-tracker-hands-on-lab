@@ -76,12 +76,12 @@ your own account as the owner, and leave it public or private as you prefer.
 
 | Repository | What it becomes |
 |---|---|
-| `recall-db` | Database schema and migrations. Deploys first — everything else needs its tables. |
-| `recall-worker` | Discovery worker. Pulls live recall data from the FDA. Internal only. |
-| `recall-ai-service` | The Recall Advisor. Internal only, and it owns a feature flag. |
-| `recall-core-api` | The public API. |
-| `recall-web-ui` | The public web interface. |
-| `app-recall-tracker` | The Application: no source code, just the workflows that release the other five together. |
+| [`recall-db`](https://github.com/cloudbees/recall-db) | Database schema and migrations. Deploys first — everything else needs its tables. |
+| [`recall-worker`](https://github.com/cloudbees/recall-worker) | Discovery worker. Pulls live recall data from the FDA. Internal only. |
+| [`recall-ai-service`](https://github.com/cloudbees/recall-ai-service) | The Recall Advisor. Internal only, and it owns a feature flag. |
+| [`recall-core-api`](https://github.com/cloudbees/recall-core-api) | The public API. |
+| [`recall-web-ui`](https://github.com/cloudbees/recall-web-ui) | The public web interface. |
+| [`app-recall-tracker`](https://github.com/cloudbees/app-recall-tracker) | The Application: no source code, just the workflows that release the other five together. |
 
 > **Keep the names exactly as they appear above.** The Application finds the other
 > five components by name, so `recall-db-yourname` will be skipped silently during a

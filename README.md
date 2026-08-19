@@ -14,12 +14,12 @@ Application workflow references the others by name.
 
 | Repo | What it is |
 |---|---|
-| `recall-db` | Database schema and migrations. Deploys first. |
-| `recall-worker` | Discovery worker. Internal only. |
-| `recall-ai-service` | Recall Advisor. Internal only. Owns a feature flag. |
-| `recall-core-api` | Public `/api/*`. |
-| `recall-web-ui` | Public `/`. |
-| `app-recall-tracker` | The Unify Application and its release workflows. |
+| [`recall-db`](https://github.com/cloudbees/recall-db) | Database schema and migrations. Deploys first. |
+| [`recall-worker`](https://github.com/cloudbees/recall-worker) | Discovery worker. Internal only. |
+| [`recall-ai-service`](https://github.com/cloudbees/recall-ai-service) | Recall Advisor. Internal only. Owns a feature flag. |
+| [`recall-core-api`](https://github.com/cloudbees/recall-core-api) | Public `/api/*`. |
+| [`recall-web-ui`](https://github.com/cloudbees/recall-web-ui) | Public `/`. |
+| [`app-recall-tracker`](https://github.com/cloudbees/app-recall-tracker) | The Unify Application and its release workflows. |
 
 ## Modules
 
