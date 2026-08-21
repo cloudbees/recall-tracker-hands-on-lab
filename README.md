@@ -66,6 +66,7 @@ it does while it is running, without deploying anything.
 | [02 — Configuration](docs/02-configuration.md) | Every value set, and Verify Setup passing. | 30 min |
 | [03 — Your first component](docs/03-first-component.md) | `recall-db` built, pushed and deployed. | 45 min |
 | [04 — The remaining components](docs/04-remaining-components.md) | The other four built. Five images, five artifacts. | 45 min |
+| [05 — The Application](docs/05-the-application.md) | Five components into one releasable unit. | 40 min |
 
 ## Questions
 
