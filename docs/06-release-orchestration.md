@@ -101,15 +101,39 @@ database by hand in Module 03. The other four are deploying for the first time.
 
 ---
 
-## 4. Approve, and watch it happen twice more
+## 4. Check DEV before you approve
 
-When `DEV` finishes, the release stops and waits for you. Approve it.
+When `DEV` finishes, the release stops and waits for you.
+
+Do not approve it yet. A gate whose answer is always yes is a delay, not a control — so
+use it for what it is for, and go and look at what you are about to promote:
+
+```
+https://<your-name>-dev.<workshop-domain>
+```
+
+Three things to confirm:
+
+- The page loads.
+- No certificate warning — your `hostname` is inside the workshop's wildcard.
+- You can sign in as `enterprise@example.com`, with the `LOGIN_PASSWORD` you set in
+  Module 02. Those accounts exist because you migrated this database in Module 03.
+
+If any of that fails, **do not approve**. Leave the gate where it is, fix the problem,
+and start a new release — that is exactly the outcome the gate is there to allow. A
+release you cannot decline is not a release process.
+
+Once `DEV` is genuinely working, approve it.
+
+---
+
+## 5. Watch it happen twice more
 
 `STAGING` runs the same deployer against a different environment, then `PROD` after it.
 Watch the namespace in each stage's output change:
 
 ```
-recall-sean-dev  →  recall-sean-staging  →  recall-sean-prod
+recall-<you>-dev  →  recall-<you>-staging  →  recall-<you>-prod
 ```
 
 Same images. Same workflow. Different `namespace` and `hostname`, because those are
@@ -121,7 +145,7 @@ most of what release orchestration is for.
 
 ---
 
-## 5. Open your application
+## 6. Open your application
 
 `https://<your-name>-prod.<workshop-domain>`
 
@@ -148,6 +172,7 @@ built from source and released through a gate.
 | A stage goes green but a component did not deploy | Read the `manifest` job. An `ABSENT` line names it, and the cause is a component name that does not match |
 | A component job fails immediately, with no steps run | A variable it needs does not exist in that environment. `STAGING` and `PROD` need `namespace` and `hostname` too, not just `DEV` |
 | A deploy fails cloning the repository | `YOUR-GITHUB-ORG` was not replaced everywhere in `deployer.yaml` — check `component-repo` as well as `uses:` |
+| The release fails in seconds with "outside the calling workflow's scm organization" | The org in `uses:` does not match your GitHub account's capitalisation. Compare the two URLs in the error — they differ only by case |
 | The site loads but every API call fails | `Web-UI` reached `Core-API` before it was ready. Re-run the stage; if it persists, `Core-API` itself failed |
 | TLS warning in the browser | `hostname` is outside the workshop's certificate. Verify Setup would have caught it, so check you fixed all three environments |
 
@@ -157,6 +182,7 @@ built from source and released through a gate.
 
 - [ ] A release with a chosen version for each of the five components
 - [ ] `DEV` green, with five `present` lines in the manifest job
+- [ ] Your `DEV` URL checked and working *before* you approved
 - [ ] An approval you granted yourself
 - [ ] `STAGING` and `PROD` green
 - [ ] Your application open in a browser at your `PROD` URL, signed in as a demo account

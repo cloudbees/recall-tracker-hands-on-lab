@@ -41,6 +41,16 @@ uses: YOUR-GITHUB-ORG/recall-db/.cloudbees/workflows/deploy.yaml
 
 Commit to `main`.
 
+> **Match GitHub's capitalisation exactly.** If your account is `AcmeDev`, write
+> `AcmeDev` — not `acmedev`. GitHub treats those as the same account, so nothing you do
+> in a browser will complain, but the release will fail with an error saying your
+> workflow is "outside the calling workflow's scm organization" while quoting two
+> strings that look identical apart from a capital letter.
+>
+> The trap is that `DOCKERHUB_USER` is lowercase by DockerHub convention. Your GitHub
+> account and your DockerHub account may be spelled differently, and only one of them
+> belongs here.
+
 ### Why this file cannot use a variable
 
 Everything else in this workshop is configured in the Unify UI. This one file needs

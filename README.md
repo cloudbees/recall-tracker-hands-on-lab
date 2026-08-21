@@ -68,6 +68,10 @@ it does while it is running, without deploying anything.
 | [04 — The remaining components](docs/04-remaining-components.md) | The other four built. Five images, five artifacts. | 45 min |
 | [05 — The Application](docs/05-the-application.md) | Five components into one releasable unit. | 40 min |
 | [06 — Release orchestration](docs/06-release-orchestration.md) | One gated release across three environments. Your URL. | 50 min |
+| [07 — Discovery, and where flags come from](docs/07-discovery-and-flags.md) | Live recall data, then five flags nobody created. | 35 min |
+| [08 — Flipping flags](docs/08-flipping-flags.md) | Behaviour changed live, nothing redeployed. | 40 min |
+| [09 — Progressive rollout and targeting](docs/09-rollout-and-targeting.md) | Percentage splits, and rules per user. | 40 min |
+| [10 — Wrap-up](docs/10-wrap-up.md) | What you built, and where to go next. | 20 min |
 
 ## Questions
 
