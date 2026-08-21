@@ -2,9 +2,9 @@
 
 **45 minutes** · Session 1: Unify building blocks
 
-Four more components, built the same way as the first. No new concepts in this module —
-which is itself the point. By the end you will have five components and five images, and
-a clear sense of why doing this by hand does not scale.
+Four more components, built the same way as the first. Almost nothing new here — which
+is itself the point. By the end you will have five components and five images, and a
+clear sense of why doing this by hand does not scale.
 
 ---
 
@@ -68,6 +68,48 @@ If one is missing, its build did not push. Open that run and read the failed ste
 
 ---
 
+## A build you did not start
+
+So far you have started every build by hand. Look at the top of any `build.yaml`:
+
+```yaml
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+  workflow_call:
+```
+
+Three ways in, and you have only used one of them.
+
+| Trigger | Means |
+|---|---|
+| `push` to `main` | A commit on `main` builds it, with nobody clicking anything |
+| `workflow_dispatch` | The **Run** button you have been using |
+| `workflow_call` | Another workflow can run this one. Module 05 uses this |
+
+### Try it
+
+Pick any of your component repositories — `recall-worker` is a good one — and make a
+trivial change on `main`. Editing `README.md` in GitHub's web editor and committing
+straight to `main` is enough.
+
+Then go back to that Component in Unify.
+
+A build starts on its own, within a few seconds. Nobody dispatched it: your commit did.
+This is the ordinary way builds happen once a project is real — the **Run** button is
+for the exceptions.
+
+> **You have just created a second version of that component.** A new commit means a new
+> SHA, which means a new image tag and a new artifact. Check DockerHub and you will find
+> two tags on that repository now.
+>
+> That is worth knowing rather than fixing. In Module 06 you choose which version of each
+> component goes into a release, and this component is the one with a choice to make.
+
+---
+
 ## Do not deploy them
 
 You deployed `recall-db` by hand in Module 03 to see what a component deploy looks like.
@@ -101,7 +143,9 @@ between browser tabs was a symptom of doing this one component at a time.
 - [ ] Five Components, named exactly `recall-db`, `recall-worker`, `recall-ai-service`,
       `recall-core-api`, `recall-web-ui`
 - [ ] Five green builds
-- [ ] Five repositories in your DockerHub account, one SHA tag each
+- [ ] Five repositories in your DockerHub account — one SHA tag each, two on whichever
+      component you pushed to
+- [ ] One build that started because of a commit rather than a button
 - [ ] Only `recall-db` deployed — the other four built but not deployed
 
 Five components that each know how to build and deploy themselves, and nothing that
