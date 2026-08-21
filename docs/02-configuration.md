@@ -40,10 +40,13 @@ will give you the two values that are yours specifically:
 `namespace` and `hostname` must both be lowercase. A Kubernetes namespace and a DNS
 name each reject anything else.
 
-> **`hostname` must end in the workshop's domain exactly.** Your facilitator issued one
-> TLS certificate covering that domain and nothing else. A hostname outside it deploys
-> perfectly happily and then fails in the browser in Module 06, with a certificate
-> warning that appears to be your browser's fault.
+> **`hostname` must be one label in front of the workshop's domain.** Your facilitator
+> issued one wildcard TLS certificate, and a wildcard covers a single level: `you-dev.`
+> then the domain, nothing deeper. A hostname outside it deploys perfectly happily and
+> then fails in the browser in Module 06, with a certificate warning that appears to be
+> your browser's fault. Verify Setup checks this for you against the domain your
+> facilitator set, so a mistake here surfaces in the next few minutes rather than two
+> sessions later.
 
 `FM_KEY` is the Feature Management SDK key, and you do not have one yet — you get it in
 Module 07, once flags exist. Setting it to the literal word `unset` now is not a
@@ -132,7 +135,7 @@ A clean run at this stage looks like this:
 
 ```
   WARN  variables
-  PASS  secrets
+  WARN  secrets
   PASS  dockerhub
   PASS  cluster
   PASS  database
@@ -140,15 +143,22 @@ A clean run at this stage looks like this:
 Setup is usable, with warnings.
 ```
 
-`variables` warns about two things, and both are correct:
+**Two WARNs is the correct result.** Everything they name is deliberately not set yet.
+
+`variables` warns about two:
 
 - **`FM_KEY` is `unset`.** Flags fall back to their code defaults, which are off. This
   matters in Module 07 and not before.
-- **`S3_BUCKET` is `unset`.** The workshop does not provision S3, so document upload
-  and export to S3 do not work. This never becomes a problem.
+- **`S3_BUCKET` is `unset`.** The workshop does not provision S3, so document upload and
+  export to S3 do not work. This never becomes a problem.
 
-Do not try to fix either. Each WARN line names the module where it starts to matter, or
-says it is expected.
+`secrets` warns about three, all of them optional API keys your facilitator has left
+out: `ANTHROPIC_API_KEY`, `VOYAGE_API_KEY` and `ADMIN_PASSWORD`. The Recall Advisor and
+semantic search are reduced without the first two, and the admin endpoints stay
+disabled without the third — which is intended.
+
+Do not try to fix any of them. Each WARN line says either which module it starts to
+matter in, or that it is expected.
 
 A **FAIL** is different, and the line names what to fix. Correct it in the UI and run
 the workflow again; it is safe to run as many times as you like.
