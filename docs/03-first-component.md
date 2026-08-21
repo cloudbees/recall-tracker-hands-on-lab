@@ -129,10 +129,28 @@ its own. When you dispatch by hand, `self` is correct.
 and then finishes — six migration files, creating the tables everything else needs, plus
 the demo accounts using the `LOGIN_PASSWORD` you set in Module 02.
 
-Watch the migration output in the run log. Seeing tables created is the first sign this
-application is real rather than a shell.
+Open the **Show what happened in the namespace** step in the run. Under
+`=== Migrations ===` you will see each file as it was applied:
 
-The deploy is safe to run twice. Migrations that have already run are skipped.
+```
+[migrate] apply    000_baseline.sql
+[migrate] apply    005_calendar_tracking.sql
+...
+[migrate] Applied 6 migrations.
+```
+
+Those are your tables, in your database, created by the image you built.
+
+Run the deploy a second time if you like. The same step then reports:
+
+```
+[migrate] skip     000_baseline.sql (already applied)
+...
+[migrate] Up to date, nothing to apply.
+```
+
+Migrations that have already run are skipped, which is what makes a deploy safe to
+repeat — and worth knowing before the Application starts running deploys for you.
 
 ---
 
@@ -142,7 +160,7 @@ The deploy is safe to run twice. Migrations that have already run are skipped.
 - [ ] A green build
 - [ ] A `recall-db` repository in your DockerHub account, with one SHA tag
 - [ ] The `artifact-id` and `version` noted down
-- [ ] A successful deploy to `DEV`, with migrations in the log
+- [ ] A successful deploy to `DEV`, with six migrations applied
 
 You have now done by hand everything a single component needs: build it, find the
 artifact, deploy that artifact to an environment.
