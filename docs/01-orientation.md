@@ -154,10 +154,36 @@ concludes the workshop app is broken.
 
 ---
 
+## One thing to do: let Unify see your code
+
+A Component is a repository with workflows in it — but Unify cannot read your
+repositories until you say so. This is the step that makes the definition true, and it
+is the only thing to click in this module.
+
+In your sub-organization, add a **GitHub** integration. Unify sends you to GitHub to
+install its app on your account, and GitHub asks which repositories the app may see:
+
+- Choose **Only select repositories**, and select all six.
+- Not **All repositories** — that grants access to everything in your account,
+  including private repositories with nothing to do with this workshop. Selecting six
+  is the same amount of clicking and models what you would actually do at work.
+
+You do this **once**. Every later module picks from the repositories you granted here,
+so nothing needs installing again in Modules 03 and 04.
+
+> **Miss one and it goes missing later.** A repository you did not tick simply will not
+> appear when you go to create its Component, with no explanation of why. The fix is on
+> GitHub, in the app's configuration — not anywhere in Unify, which is where everyone
+> looks first. Counting to six now is worth it.
+
+---
+
 ## Before you move on
 
-You should be able to answer these without looking. If one is fuzzy, ask now — every
-later module assumes all four.
+- [ ] All six repositories granted to the CloudBees GitHub app
+
+You should also be able to answer these without looking. If one is fuzzy, ask now —
+every later module assumes all four.
 
 - [ ] What is the difference between a Component and an Application?
 - [ ] Why does `recall-db` deploy before anything else?
