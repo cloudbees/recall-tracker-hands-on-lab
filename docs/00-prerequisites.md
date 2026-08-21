@@ -3,12 +3,7 @@
 **15 minutes** · Session 1: Unify building blocks
 
 Everything here is pre-work, and it takes about fifteen minutes. Getting it done
-beforehand means session one starts with building rather than installing — and gives
-your facilitator time to help if anything needs a hand.
-
-The [README](../README.md) describes what you are building and why it is shaped the
-way it is. This module is the four accounts and six repositories you need before
-session one starts.
+beforehand allows session one to start with building rather than setting up accounts.
 
 ---
 
@@ -27,20 +22,13 @@ is deleted after the workshop — so experiment freely.
 
 Any account. You will copy six template repositories into it.
 
-**Confirm it works:** sign in and check you can create a new repository.
-
 ### 3. DockerHub
 
 A free account, plus an **access token**.
 
-Sign in, go to **Account Settings → Personal access tokens → Generate new token**,
+[Sign in](https://app.docker.com), go to [**Account Settings → Personal access tokens → Generate new token**](https://app.docker.com/accounts/azyzut/settings/personal-access-tokens/create),
 give it a description and **Read, Write, Delete** permissions, then copy the token
 somewhere safe. You cannot view it again after closing the dialog.
-
-> **Worth pausing on — this one catches almost everyone.** An access token is not
-> your password. If you paste your password instead, everything looks fine until
-> your first build returns a `401`. Module 02 checks this before you build anything,
-> so it will be caught either way — a minute here just saves the detour.
 
 **Confirm it works:**
 
@@ -52,12 +40,6 @@ docker login -u YOUR_USERNAME
 No Docker installed? No problem — nothing today requires it locally. Skip the check
 and Module 02 will verify the token for you.
 
-### 4. A terminal with `kubectl` (optional)
-
-Everything in this workshop happens in a browser, so this is purely for the curious.
-If you would like to look behind the curtain at the running pods, bring `kubectl` and
-your facilitator will sort out access.
-
 ---
 
 ## Copy the six repositories
@@ -68,6 +50,11 @@ creating an independent copy with its own history, which you own completely.
 For each one: open it, choose **Use this template → Create a new repository**, pick
 your own account as the owner, and leave it public or private as you prefer.
 
+> **Keep the names exactly as they appear below.** The Application finds the other
+> five components by name, so `recall-db-yourname` will be skipped silently during a
+> release — no error, just a component that never deploys. It is fixable later, but
+> it means editing a few files, so it is worth a quick double-check here.
+
 | Repository | What it becomes |
 |---|---|
 | [`recall-db`](https://github.com/cloudbees/recall-db) | Database schema and migrations. Deploys first — everything else needs its tables. |
@@ -77,21 +64,14 @@ your own account as the owner, and leave it public or private as you prefer.
 | [`recall-web-ui`](https://github.com/cloudbees/recall-web-ui) | The public web interface. |
 | [`app-recall-tracker`](https://github.com/cloudbees/app-recall-tracker) | The Application: no source code, just the workflows that release the other five together. |
 
-> **Keep the names exactly as they appear above.** The Application finds the other
-> five components by name, so `recall-db-yourname` will be skipped silently during a
-> release — no error, just a component that never deploys. It is fixable later, but
-> it means editing a few files, so it is worth a quick double-check here.
-
 ---
 
 ## Before you arrive
 
-- [ ] Signed in to CloudBees Unify, in your own sub-organization
+- [ ] Signed in to CloudBees Unify in your own sub-organization
 - [ ] Signed in to GitHub
-- [ ] DockerHub **access token** generated and saved somewhere you can paste from
-- [ ] All six repositories copied, names unchanged
-
-That's everything. Bring the token, and we will do the rest together.
+- [ ] DockerHub **access token** generated and saved
+- [ ] Six GitHub repositories copied
 
 ---
 
