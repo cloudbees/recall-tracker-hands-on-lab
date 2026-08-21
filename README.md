@@ -64,6 +64,7 @@ it does while it is running, without deploying anything.
 | [00 — Before we start](docs/00-prerequisites.md) | Accounts and repository copies. Pre-work. | 15 min |
 | [01 — Orientation](docs/01-orientation.md) | The vocabulary and the map. | 25 min |
 | [02 — Configuration](docs/02-configuration.md) | Every value set, and Verify Setup passing. | 30 min |
+| [03 — Your first component](docs/03-first-component.md) | `recall-db` built, pushed and deployed. | 45 min |
 
 ## Questions
 
