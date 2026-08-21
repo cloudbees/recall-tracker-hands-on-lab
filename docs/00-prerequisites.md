@@ -6,15 +6,9 @@ Everything here is pre-work, and it takes about fifteen minutes. Getting it done
 beforehand means session one starts with building rather than installing — and gives
 your facilitator time to help if anything needs a hand.
 
-We are going to take a real application — five services, a database, an AI
-assistant — and put it through CloudBees Unify end to end. Build it, release it
-through three environments with an approval gate, then change how it behaves for
-your users without deploying anything at all.
-
-By the end of session three you will have your own running copy at your own URL,
-and you will change what it does while it is running.
-
-To get there, we need four accounts and six repositories.
+The [README](../README.md) describes what you are building and why it is shaped the
+way it is. This module is the four accounts and six repositories you need before
+session one starts.
 
 ---
 
@@ -87,51 +81,6 @@ your own account as the owner, and leave it public or private as you prefer.
 > five components by name, so `recall-db-yourname` will be skipped silently during a
 > release — no error, just a component that never deploys. It is fixable later, but
 > it means editing a few files, so it is worth a quick double-check here.
-
----
-
-## The five-minute version of what you are building
-
-**Recall Tracker** helps a company track product recalls that affect it. A user
-describes their business, the app searches live FDA and CPSC recall data, and builds
-a compliance matrix of what they need to act on.
-
-It is a real application rather than a demo shell — five services with genuine
-boundaries between them:
-
-```
-                          ┌──────────────┐
-    you ────── HTTPS ────►│  recall-web-ui  │  pages, and the browser-side flags
-                          └───────┬──────┘
-                                  │ /api
-                          ┌───────▼──────┐
-                          │ recall-core-api │  the public API surface
-                          └───┬───────┬──┘
-                    ┌─────────┘       └─────────┐
-          ┌─────────▼────────┐       ┌──────────▼───────┐
-          │ recall-ai-service │       │  recall-worker   │  backend services —
-          │  Recall Advisor   │       │  FDA / CPSC      │  no route from outside
-          └─────────┬────────┘       └──────────┬───────┘
-                    └──────────┬────────────────┘
-                        ┌──────▼──────┐
-                        │  recall-db  │  migrations run before anything starts
-                        └─────────────┘
-```
-
-That shape is the reason this workshop exists. A pipeline with a single service is
-straightforward. The interesting problems — deployment ordering, coordinated
-releases, changing one service's behaviour without touching its neighbours — only
-show up once there are five.
-
----
-
-## How the three sessions fit together
-
-| Session | Focus | You finish with |
-|---|---|---|
-| 1 | The building blocks of Unify | All five components building real images |
-| 2 | Release orchestration | One Application releasing all five, gated, across three environments |
-| 3 | Feature management | Behaviour you change live, without deploying |
 
 ---
 
