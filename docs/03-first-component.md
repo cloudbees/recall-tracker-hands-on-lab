@@ -6,8 +6,9 @@ One component, end to end, slowly. By the end of this module `recall-db` will ha
 a real container image, pushed it to your DockerHub account, and registered it in Unify
 as an artifact you can deploy.
 
-Module 04 is this same process four more times. Time spent understanding it here is
-repaid four times over, so read the workflow rather than only running it.
+Do it slowly. Module 04 is this same process four more times, so time spent
+understanding it here is repaid four times over — read the workflow rather than only
+running it.
 
 ---
 
@@ -143,8 +144,19 @@ The deploy is safe to run twice. Migrations that have already run are skipped.
 - [ ] The `artifact-id` and `version` noted down
 - [ ] A successful deploy to `DEV`, with migrations in the log
 
-You have now done everything a component needs. Module 04 repeats it for the other four,
-and once they are all built, Module 05 assembles them into something releasable.
+You have now done by hand everything a single component needs: build it, find the
+artifact, deploy that artifact to an environment.
+
+So consider what happens next. There are five components. Every one of them needs
+building and deploying, in a particular order, every time anything changes — five
+builds, five artifact IDs copied out of five evidence tabs, five deploys run in the
+right sequence, and a mistake anywhere in that chain shows up somewhere else entirely.
+
+Nobody does that twice by hand. Components that are always built and released together
+are an **Application**, and an Application is the thing that runs this chain for you.
+
+Module 04 builds the other four, because you cannot assemble components that do not
+exist yet. Module 05 is where the five become one.
 
 ---
 
