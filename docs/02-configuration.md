@@ -164,9 +164,9 @@ much cheaper to find now than during a release in Module 06.
 | Symptom | Cause |
 |---|---|
 | `dockerhub` FAIL | A DockerHub password was pasted instead of an access token |
-| `cluster` FAIL, "not authorized" | The `kubeconfig` secret holds a file path, or part of the file |
+| `cluster` FAIL, "not authorized" | A problem with the `kubeconfig` your facilitator set. Tell them — you cannot fix this one |
 | `cluster` FAIL, namespace not found | `namespace` does not match what your facilitator provisioned — check the spelling and the environment suffix |
-| `database` FAIL | Usually the same kubeconfig or namespace problem; the database lives inside your namespace |
+| `database` FAIL | Usually a `namespace` typo — the database lives inside your namespace. If `cluster` also failed, it is the same cause |
 | Workflow fails with no steps shown | A property is missing entirely rather than empty. The error names the variable |
 | `variables` FAIL rather than WARN | Something other than `FM_KEY` is missing — the line above the summary says which |
 
@@ -176,8 +176,8 @@ much cheaper to find now than during a release in Module 06.
 
 - [ ] Three environments created by you, each with `namespace`, `hostname` and `FM_KEY`
 - [ ] Every `hostname` ends in the workshop domain
-- [ ] `DOCKERHUB_USER`, `DOCKERHUB_TOKEN`, `kubeconfig` and `LOGIN_PASSWORD` set at
-      organization scope
+- [ ] `DOCKERHUB_USER`, `DOCKERHUB_TOKEN` and `LOGIN_PASSWORD` set at organization
+      scope, with `kubeconfig` already there from your facilitator
 - [ ] Verify Setup run against all three environments, each ending WARN or PASS
 
 Everything from here builds on this. Module 03 takes one component and puts it all the
