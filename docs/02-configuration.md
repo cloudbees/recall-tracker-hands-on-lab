@@ -119,6 +119,9 @@ exist and know about your environments.
 
 From the Application, run the **Verify Setup** workflow. Choose `DEV`.
 
+Give it two to three minutes. Most of that is the runner starting up, not the checks —
+it has not hung.
+
 It checks five things:
 
 | Check | What it proves |
