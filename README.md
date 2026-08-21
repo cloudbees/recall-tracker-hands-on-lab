@@ -9,8 +9,7 @@ behaviour live with a feature flag.
 describes their business, the app searches live FDA and CPSC recall data, and builds a
 compliance matrix of what they need to act on.
 
-It is a real application rather than a demo shell — five services with genuine
-boundaries between them:
+The architecture of the application can be seen below.
 
 ```
                 ┌───────────────────┐
@@ -33,9 +32,7 @@ you ── HTTPS ──►│   recall-web-ui   │   pages, and the browser-sid
 ```
 
 Only `recall-web-ui` has a route in from the internet, so there is one hostname to
-remember rather than five. `recall-db` deploys before everything else: deploy the API
-into an empty database and the pod starts, passes its health check, and returns errors
-on every request — a failure that looks like a bug in the API and is not.
+remember rather than five. `recall-db` needs to be deployed before everything else and `recall-web-ui` needs to be deployed after everything else.
 
 That shape is the reason this workshop exists. A pipeline with a single service is
 straightforward. The interesting problems — deployment ordering, coordinated releases,
@@ -47,14 +44,9 @@ service actually broke — only show up once there are five.
 Each of the five repositories becomes a **Component**: a repository with workflows in
 it. A sixth, `app-recall-tracker`, holds no application code — it is the **Application**,
 and its workflows release the other five together, in order, through three
-**Environments** with an approval gate between them.
+**Environments** with an approval gate after the `DEV` environment.
 
-Nothing is configured by editing files. Every value the workshop needs — your cluster
-credential, your DockerHub account, the namespace and hostname that are yours
-specifically — is set in the Unify UI, and a workflow called **Verify Setup** proves each
-one works before anything is built.
-
-By the end you will have your own running copy at your own URL, and you will change what
+By the end you will have your own running copy with your own URL, and you will change what
 it does while it is running, without deploying anything.
 
 | Session | Focus | You finish with |
