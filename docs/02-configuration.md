@@ -61,27 +61,22 @@ across all three environments, so they are set once.
 |---|---|---|
 | `DOCKERHUB_USER` | Property | Your DockerHub username |
 | `DOCKERHUB_TOKEN` | Secret | The **access token** from Module 00, not your password |
-| `kubeconfig` | Secret | Given to you by your facilitator — paste the contents |
+| `kubeconfig` | Secret | Pre-populated by your facilitator |
 | `LOGIN_PASSWORD` | Secret | Your choice. Becomes the password for your demo accounts |
-
-**`kubeconfig`** is your credential for the cluster. It arrives as one very long line of
-base64 — several thousand characters. If what you paste looks like a filename or a few
-dozen characters, you have the path rather than the contents.
 
 **`LOGIN_PASSWORD`** is read while `recall-db` runs its migrations, and it becomes the
 password for the three demo accounts you will sign in as later —
 `small@example.com`, `midmarket@example.com` and `enterprise@example.com`. Pick
 something you will still have in an hour. If it is missing when the database deploys,
-the accounts are never created, the deploy still succeeds, and you find out at the
+the accounts will fail to be created, the deploy still succeeds, and you find out at the
 sign-in page.
 
 ### What you inherit
 
 You will also see properties marked **Inherited**. Database credentials, the FDA API
-key and a few others are set once at the parent organization and flow down. You cannot
-read their values and you do not need to.
+key and a few others are set once at the parent organization and flow down.
 
-That is why you have a working database without anyone handing you a password.
+That is how you will have a working database without anyone handing you a password.
 
 ---
 
@@ -109,7 +104,7 @@ also gives you something you can overwrite later, which a blank field does not.
 ## 4. Create the Application
 
 `app-recall-tracker` is the repository holding the workflows that release the other
-five together. It needs to exist in Unify before you can run anything from it.
+five together. It needs to exist in Unify for step 5.
 
 Connect the repository as an Application and link your three environments to it. You
 will come back in Module 05 to attach the five components; for now it only needs to
