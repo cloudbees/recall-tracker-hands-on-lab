@@ -69,8 +69,8 @@ No `latest`. This matters in the next module and it will catch you if you skip i
 Run the **build** workflow. It takes a few minutes — most of that is `npm ci` and the
 image build.
 
-While it runs, watch which step is slowest. That is usually the honest answer to "why
-is CI slow" in your own projects too.
+While it runs, watch which step is slowest. Do your own projects follow the same
+pattern?
 
 ### Confirm the image is real
 
