@@ -9,7 +9,8 @@ behaviour live with a feature flag.
 describes their business, the app searches live FDA and CPSC recall data, and builds a
 compliance matrix of what they need to act on.
 
-The architecture of the application can be seen below.
+It is a real application rather than a demo shell — five services with genuine
+boundaries between them:
 
 ```
                 ┌───────────────────┐
@@ -32,7 +33,8 @@ you ── HTTPS ──►│   recall-web-ui   │   pages, and the browser-sid
 ```
 
 Only `recall-web-ui` has a route in from the internet, so there is one hostname to
-remember rather than five. `recall-db` needs to be deployed before everything else and `recall-web-ui` needs to be deployed after everything else.
+remember rather than five. `recall-db` has to be deployed before everything else, and
+`recall-web-ui` after `recall-core-api` — an order the Application defines.
 
 That shape is the reason this workshop exists. A pipeline with a single service is
 straightforward. The interesting problems — deployment ordering, coordinated releases,
@@ -57,13 +59,11 @@ it does while it is running, without deploying anything.
 
 ## Modules
 
-| Module | | Time |
+| Module | Covers | Time |
 |---|---|---|
 | [00 — Before we start](docs/00-prerequisites.md) | Accounts and repository copies. Pre-work. | 15 min |
 | [01 — Orientation](docs/01-orientation.md) | The vocabulary and the map. | 25 min |
 | [02 — Configuration](docs/02-configuration.md) | Every value set, and Verify Setup passing. | 30 min |
-
-Later modules are added as they are written.
 
 ## Questions
 

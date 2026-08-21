@@ -26,19 +26,9 @@ Any account. You will copy six template repositories into it.
 
 A free account, plus an **access token**.
 
-[Sign in](https://app.docker.com), go to [**Account Settings → Personal access tokens → Generate new token**](https://app.docker.com/accounts/azyzut/settings/personal-access-tokens/create),
-give it a description and **Read, Write, Delete** permissions, then copy the token
-somewhere safe. You cannot view it again after closing the dialog.
-
-**Confirm it works:**
-
-```bash
-docker login -u YOUR_USERNAME
-# paste the ACCESS TOKEN when prompted for a password
-```
-
-No Docker installed? No problem — nothing today requires it locally. Skip the check
-and Module 02 will verify the token for you.
+[Sign in](https://app.docker.com), go to **Account Settings → Personal access tokens
+→ Generate new token**, give it a description and **Read, Write, Delete** permissions,
+then copy the token somewhere safe. You cannot view it again after closing the dialog.
 
 ---
 
@@ -71,7 +61,7 @@ your own account as the owner, and leave it public or private as you prefer.
 - [ ] Signed in to CloudBees Unify in your own sub-organization
 - [ ] Signed in to GitHub
 - [ ] DockerHub **access token** generated and saved
-- [ ] Six GitHub repositories copied
+- [ ] Six GitHub repositories copied, names unchanged
 
 ---
 
