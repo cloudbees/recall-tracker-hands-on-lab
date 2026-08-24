@@ -93,17 +93,23 @@ decision.
 
 ---
 
-## 4. `recall.errorState` — a kill switch
+## 4. `recall.dashboardRedesign` — a kill switch
 
-The last one is deliberately blunt. Turn it on, then try to sign in.
+The last one is not what its name suggests, and that is the point.
 
-The login redirect fails and you get an error page. Turn it off, refresh, and you can
-sign in again.
+Turn it on, then try to sign in. You do not get a new dashboard: you get "Service
+temporarily unavailable", and you cannot get in. Refresh and it holds. If you were
+already signed in, your next page load signs you out and returns you here.
 
-This is what a kill switch looks like: a way to take a feature — or a whole entry
-path — out of service in seconds, without a deploy, without a rollback, and without
-waiting for a pipeline. In a real incident that is the difference between a two-minute
-outage and a forty-minute one.
+Now turn it off and sign in. Everything is back.
+
+That is a rollback measured in seconds — no deployment, no revert commit, no pipeline,
+no waiting. In a real incident it is the difference between a two-minute outage and a
+forty-minute one.
+
+And notice which flag did it. A feature you were looking forward to turned out not to
+be ready, and taking it back cost one click. That is the argument for shipping behind a
+flag: not that nothing will go wrong, but that going wrong stops being expensive.
 
 Turn it back off before you continue.
 
@@ -134,7 +140,7 @@ decision moved out of the deploy and into the platform.**
 - [ ] `recall.recallAdvisor` on, a question asked, then off — with the rest of the
       application still working
 - [ ] `recall.exportPdf` and `recall.calendarView` both on
-- [ ] `recall.errorState` demonstrated, then turned back off
+- [ ] `recall.dashboardRedesign` demonstrated, then turned back off
 - [ ] You can say why the Recall Advisor gate lives in `recall-ai-service` rather than
       in `recall-core-api`
 

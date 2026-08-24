@@ -66,7 +66,7 @@ Go back to **Feature Management**. There are five flags in the list:
 | `recall.recallAdvisor` | boolean |
 | `recall.exportPdf` | boolean |
 | `recall.calendarView` | boolean |
-| `recall.errorState` | boolean |
+| `recall.dashboardRedesign` | boolean |
 | `recall.headerTheme` | string, four variants |
 
 Nobody added them. You did not create them in the UI, and no workflow registered them.
@@ -75,10 +75,10 @@ They came from the code. `packages/shared/src/fm/flags.ts` declares them:
 
 ```ts
 export const featureFlags = {
-  recallAdvisor:    new Rox.Flag(false),
-  exportPdf:        new Rox.Flag(false),
-  calendarView:     new Rox.Flag(false),
-  errorState:       new Rox.Flag(false),
+  recallAdvisor:     new Rox.Flag(false),
+  exportPdf:         new Rox.Flag(false),
+  calendarView:      new Rox.Flag(false),
+  dashboardRedesign: new Rox.Flag(false),
 };
 
 export const headerTheme =
