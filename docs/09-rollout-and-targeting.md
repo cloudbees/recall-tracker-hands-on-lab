@@ -104,7 +104,7 @@ an unhappy customer an escape hatch at 4pm on a Friday without shipping anything
 
 ## Try this if you have time
 
-- Combine conditions: `companySize` is `enterprise` **and** `state` is `OR`. Only
+- Combine conditions: `companySize` is `enterprise` **and** `state` is `NY`. Only
   `enterprise@example.com` matches, and only because of the discovery you ran in
   Module 07.
 - Put `recall.headerTheme` behind a target group, so `branded` reaches one customer
