@@ -19,7 +19,7 @@ Use these inputs. They are chosen because they return data:
 | Company Name | anything |
 | Product Category | `Medical Devices` |
 | Supply Chain Role | `Manufacturer` |
-| Distribution Region | `OR` |
+| Distribution Region | `NY` |
 | Employee Count | `1200` |
 
 The discovery calls `recall-worker`, which queries the FDA's openFDA API live, and
@@ -28,7 +28,10 @@ builds a compliance matrix from what comes back.
 > **Category and region both matter, and an empty result is a real answer.** Some
 > combinations genuinely have no recalls on record — a category nobody has recalled in
 > that state returns nothing, correctly. If your matrix is empty, try `Medical Devices`
-> with `CA` before assuming something is broken.
+> with `MA` before assuming something is broken.
+>
+> Stay with `NY` or `MA` rather than picking a west coast state. The region you choose
+> here is saved as your company's location, and Module 09 targets a rule at it.
 
 Open the compliance matrix. Those requirements were derived from recall records that
 existed before this workshop started. Nothing here is seeded fixtures.
