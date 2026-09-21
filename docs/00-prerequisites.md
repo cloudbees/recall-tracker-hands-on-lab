@@ -15,8 +15,11 @@ Your facilitator has created a sub-organization for you. Check the invitation em
 and sign in.
 
 **Confirm it works:** sign in and note the organization name in the top-left. It
-should be yours, not a shared one. Everything you create today lives here, and it
+should be the name of the workshop, but you can click the expand button to select
+your own workspace. Everything you create today lives here, belongs to you, and 
 is deleted after the workshop — so experiment freely.
+
+<img width="380" height="71" alt="image" src="https://github.com/user-attachments/assets/a20d54e5-fe15-4fb1-a3c3-8930d42aec74" />
 
 ### 2. GitHub
 
