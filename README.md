@@ -32,14 +32,13 @@ you ── HTTPS ──►│   recall-web-ui   │   pages, and the browser-sid
                 └───────────────────┘
 ```
 
-Only `recall-web-ui` has a route in from the internet, so there is one hostname to
-remember rather than five. `recall-db` has to be deployed before everything else, and
-`recall-web-ui` after `recall-core-api` — an order the Application defines.
+Only `recall-web-ui` has a route in from the internet. `recall-db` has to be deployed
+before everything else, and `recall-web-ui` after `recall-core-api`.
 
 That shape is the reason this workshop exists. A pipeline with a single service is
-straightforward. The interesting problems — deployment ordering, coordinated releases,
-changing one service's behaviour without touching its neighbours, working out which
-service actually broke — only show up once there are five.
+straightforward and trivializes the issues of more complex applications — deployment
+ordering, coordinated releases, changing one service's behaviour without touching its 
+neighbours, working out which service actually broke, etc...
 
 ## How it fits together in Unify
 
@@ -48,8 +47,8 @@ it. A sixth, `app-recall-tracker`, holds no application code — it is the **App
 and its workflows release the other five together, in order, through three
 **Environments** with an approval gate after the `DEV` environment.
 
-By the end you will have your own running copy with your own URL, and you will change what
-it does while it is running, without deploying anything.
+By the end you will have a running copy of **Recall Tracker** with your own URL, and
+you will change what it does while it is running, without deploying anything.
 
 | Session | Focus | You finish with |
 |---|---|---|
