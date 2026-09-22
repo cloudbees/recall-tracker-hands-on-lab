@@ -81,7 +81,7 @@ on:
   workflow_call:
 ```
 
-Three ways in, and you have only used one of them.
+Three ways in, and you have only used one of them. See the full list of triggers [here](https://docs.cloudbees.com/docs/cloudbees-unify/latest/continuous-integration/reference/workflow-syntax-reference#_on).
 
 | Trigger | Means |
 |---|---|
