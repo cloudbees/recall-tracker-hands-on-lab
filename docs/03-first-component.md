@@ -17,7 +17,7 @@ running it.
 In your sub-organization, create a new **Component** from your `recall-db` repository.
 
 It appears in the repository list because of the GitHub app you installed in Module 01.
-If it is missing, that is where to look — not here.
+If it is missing, that is what to review.
 
 Unify scans the repository for `.cloudbees/workflows/` and finds two workflows:
 `build.yaml` and `deploy.yaml`. That is all a Component is: a repository, and the
@@ -25,7 +25,7 @@ workflows inside it.
 
 > **The name must be exactly `recall-db`.** The Application finds its components by
 > name in Module 05. A component called `recall-db-sean` or `Recall DB` is skipped
-> silently during a release — no error, just a component that never deploys.
+> silently during a release.
 
 ---
 
@@ -60,7 +60,7 @@ is why nothing asked you to install anything locally.
 docker.io/<your-user>/recall-db:<commit-sha>
 ```
 
-No `latest`. This matters in the next module and it will catch you if you skip it.
+No `latest`. This matters in the next module and it will fail if you skip it.
 
 ---
 
@@ -91,8 +91,7 @@ Go to the run's **Evidence** tab. The build published a table:
 | `artifact-id` | a UUID |
 | `version` | the commit SHA |
 
-**Note both down.** You need them in the next step, and they are easier to copy now
-than to find again later.
+**Jot both down.** You need them in the next step, and they are easier to copy now.
 
 An *artifact* is Unify's record of a thing you built: which image, from which commit, by
 which run. It is what makes a version selectable in a release, and it is how Unify can
@@ -106,20 +105,19 @@ Run the **deploy** workflow. It asks for four inputs:
 
 | Input | Value |
 |---|---|
-| `artifact-id` | the UUID from the evidence tab |
-| `version` | the commit SHA from the evidence tab |
+| `artifact-id` | the UUID copied from the evidence tab |
+| `version` | the commit SHA copied from the evidence tab |
 | `environment` | `DEV` |
 | `component-repo` | leave as `self` |
 
 `version` is the image tag to pull. Since builds push only a SHA tag, this has to be
 that SHA.
 
-> **`latest` does not exist.** People try it, so the workflow checks for it and stops
-> with an explanation rather than letting Kubernetes fail with `ImagePullBackOff`
-> several minutes later — an error that reads like a registry authentication problem
-> and is not.
+> **`latest` does not exist.** The workflow checks for it and stops with an explanation
+> explanation rather than letting Kubernetes fail with `ImagePullBackOff` several
+> minutes later — an error that reads like a registry authentication problem but is not.
 
-`component-repo` exists because of a Unify detail you will meet properly in Module 05:
+`component-repo` exists because of a Unify detail you will see in Module 05:
 a workflow called by another workflow runs in the *caller's* repository context, not
 its own. When you dispatch by hand, `self` is correct.
 
@@ -170,8 +168,8 @@ building and deploying, in a particular order, every time anything changes — f
 builds, five artifact IDs copied out of five evidence tabs, five deploys run in the
 right sequence, and a mistake anywhere in that chain shows up somewhere else entirely.
 
-Nobody does that twice by hand. Components that are always built and released together
-are an **Application**, and an Application is the thing that runs this chain for you.
+Nobody wants to do that twice by hand. Components that are always built and released together
+are an **Application**, and an Application is the thing that manages this chain for you.
 
 Module 04 builds the other four, because you cannot assemble components that do not
 exist yet. Module 05 is where the five become one.
