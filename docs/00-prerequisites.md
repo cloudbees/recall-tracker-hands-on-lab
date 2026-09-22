@@ -61,7 +61,7 @@ your own account as the owner, and leave it public or private as you prefer.
 
 ## Before you arrive
 
-- [ ] Signed in to CloudBees Unify in your own sub-organization
+- [ ] Signed in to CloudBees Unify and navigated to your own sub-organization
 - [ ] Signed in to GitHub
 - [ ] DockerHub **access token** generated and saved
 - [ ] Six GitHub repositories copied, names unchanged
