@@ -4,23 +4,13 @@
 
 Two things happen in this module. First you use the application properly — a real
 discovery against live recall data. Then you connect Feature Management and find five
-flags already waiting for you, which nobody created.
+flags already waiting for you, which get created by the code.
 
 ---
 
 ## 1. Run a discovery
 
-Sign in to your `PROD` URL as `enterprise@example.com` and start a discovery.
-
-Use these inputs. They are chosen because they return data:
-
-| Field | Value |
-|---|---|
-| Company Name | anything |
-| Product Category | `Medical Devices` |
-| Supply Chain Role | `Manufacturer` |
-| Distribution Region | `NY` |
-| Employee Count | `1200` |
+Sign in to your `PROD` URL and create a new account to start a discovery.
 
 The discovery calls `recall-worker`, which queries the FDA's openFDA API live, and
 builds a compliance matrix from what comes back.
@@ -28,13 +18,10 @@ builds a compliance matrix from what comes back.
 > **Category and region both matter, and an empty result is a real answer.** Some
 > combinations genuinely have no recalls on record — a category nobody has recalled in
 > that state returns nothing, correctly. If your matrix is empty, try `Medical Devices`
-> with `MA` before assuming something is broken.
+> with `NY` and see if you get a different result.
 >
-> Stay with `NY` or `MA` rather than picking a west coast state. The region you choose
-> here is saved as your company's location, and Module 09 targets a rule at it.
-
-Open the compliance matrix. Those requirements were derived from recall records that
-existed before this workshop started. Nothing here is seeded fixtures.
+> You can either change the URL from matrix to discovery or create a new account to
+> get back to the discovery page.
 
 ---
 
@@ -42,8 +29,9 @@ existed before this workshop started. Nothing here is seeded fixtures.
 
 Everything so far has been build and release. This is the other half.
 
-In your sub-organization, open **Feature Management** and copy your SDK key. Then set it
-as `FM_KEY` — the variable you have been leaving as `unset` since Module 02 — on all
+In your sub-organization, open **Feature Management** and copy your SDK keys. The easiest
+way to obtain them is creating a dummy flag. Then you can copy each environments SDK key
+and set the `FM_KEY` — the variable you have been leaving as `unset` since Module 02 — on all
 three environments.
 
 ### Then redeploy
@@ -57,6 +45,18 @@ Create a new release and run it through all three stages.
 That is worth noticing on its own: **configuration changes need a deploy, and this is
 the last time in this workshop that will be true.** Everything you change from here
 takes effect without one.
+
+> [!NOTE]
+> On key security
+> 
+> Your web UI serves its Feature Management SDK key from `/api/fm-config`, to anyone
+> who asks. You can open it in a browser and read the key.
+> 
+> That is correct, and deliberate. The browser-side SDK runs on the user's machine, so
+> it needs a key the user's machine can read — the same way a publishable Stripe key or
+> a Google Maps API key works. It permits reading flag configuration and nothing else.
+> 
+> Flag *changes* go through the Unify UI, authenticated as you.
 
 ---
 
@@ -100,22 +100,6 @@ declared in code is a flag nothing reads.
 Notice also that every default is `false`. Until now your application has been running
 with all of these off, which is why you have not seen a Recall Advisor, a PDF export or
 a calendar view. They were built and deployed the whole time.
-
----
-
-## 4. One warning, because it cannot be undone
-
-> **Never delete a flag to reset it.**
->
-> Deleting a flag in Feature Management is irreversible, and it reserves the name. The
-> SDK cannot recreate it, and reusing that name needs a CloudBees Support request.
->
-> This matters most for `recall.headerTheme`. A string flag's variant list is fixed when
-> it first registers. If you want different variants, ship a new flag name — do not
-> delete the flag to force it to re-register, because there will be nothing to
-> re-register into.
-
-Worth knowing in the room rather than discovering in your own organization later.
 
 ---
 
