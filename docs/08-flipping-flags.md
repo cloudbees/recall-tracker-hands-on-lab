@@ -15,8 +15,8 @@ Work against `PROD` — you may as well change production, since you can change 
 ## How fast, and why
 
 Flag changes reach the running services over Server-Sent Events, so about **two
-seconds**. You do not need to refresh for the SDK to have the new value, though you will
-often need to refresh for a page to *re-render* with it.
+seconds**. You do not need to refresh for the SDK to have the new value, though you
+may need to refresh for a page to *re-render* depending on how it's coded in the backend.
 
 That is the difference worth internalising: a deploy is minutes and replaces a process,
 a flag change is seconds and changes a decision the process was already making.
@@ -34,7 +34,7 @@ Start here because the effect is unmissable. It is a string flag with four varia
 | `vibrant` | Saturated purple and pink |
 | `branded` | CloudBees blue and purple |
 
-Open your compliance matrix, then change the variant in Unify and refresh the page.
+Open your compliance matrix, then change the variant in Unify and save the configuration.
 
 Try `branded`, and consider what it means: you have just re-skinned an application for a
 customer without building anything. The variants are declared in the code — the browser
@@ -60,13 +60,8 @@ loads. Discovery still runs.
 
 One service stopped offering a feature. Nothing else noticed.
 
-> **Watch the pods if you have `kubectl`.** Ask your facilitator for access and run
-> `kubectl get pods -n recall-<you>-prod -w` while you flip it. Nothing restarts. No
-> pod is replaced, no container is recreated, nothing goes `Pending`. A demo that
-> claims "no deploy" is much more convincing when the pod ages keep climbing.
-
 That boundary is the argument for feature flags in a distributed system. You cannot
-demonstrate it with one service, because there is nothing for the failure *not* to
+demonstrate it with one service, because there is nothing for the failure _not_ to
 spread to.
 
 ---
@@ -80,7 +75,7 @@ These two are read in the browser, in `recall-web-ui`:
 {fm.isEnabled('recall.calendarView', false) && ( ... )}
 ```
 
-Turn each on and refresh. An export button appears on the matrix; a calendar view
+Turn each on and watch as the changes appear. An export button appears on the matrix; a calendar view
 appears in the navigation.
 
 Notice what the code does when the flag is off: the control is not disabled or hidden
@@ -97,9 +92,8 @@ decision.
 
 The last one is not what its name suggests, and that is the point.
 
-Turn it on, then try to sign in. You do not get a new dashboard: you get "Service
-temporarily unavailable", and you cannot get in. Refresh and it holds. If you were
-already signed in, your next page load signs you out and returns you here.
+Turn it on, then refresh your page (or try to sign in). You do not get a new dashboard:
+you get "Service temporarily unavailable", and you cannot get in.
 
 Now turn it off and sign in. Everything is back.
 

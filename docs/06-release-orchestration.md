@@ -41,7 +41,7 @@ rewrite.
 
 ### The approval gate
 
-Between `DEV` and `STAGING` sits a job that deploys nothing:
+So what is the fourth job? Between `DEV` and `STAGING` sits a job that deploys nothing:
 
 ```yaml
 Approve:

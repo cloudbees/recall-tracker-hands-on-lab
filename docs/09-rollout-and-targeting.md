@@ -31,7 +31,7 @@ something more important than the split itself:
 
 Now move it: 10% → 50% → 100%, checking as you go.
 
-That progression is the whole point. You have just shipped a feature to production
+You can watch in real-time as the feature is progressively shipped to production
 incrementally, with an audience you chose, and you could stop or reverse it at any point
 in seconds. Compare that with the alternative: ship to everyone at once and hope, or
 maintain a separate branch until you are confident.
@@ -40,9 +40,9 @@ maintain a separate branch until you are confident.
 
 ## 2. Target by who the user is
 
-A percentage is blunt — it does not care *who* is in the 10%. Often you want a specific
-audience: paying customers, one region, internal staff, a single account that reported a
-bug.
+Okay, so maybe a percentage isn't really choosing _who_ the audience is — it preserves the
+buckets but doesn't care _who_ is in the 10%. Often you want a specific audience: paying
+customers, one region, internal staff, a single account that reported a bug.
 
 The application already tells Feature Management who each user is. When someone signs in,
 it sets custom properties from their company record:
@@ -97,17 +97,18 @@ change and no way to reverse it quickly.
 A targeted flag is one rule, changed in seconds, reversible in seconds, evaluated per
 user per request — and the code has exactly one path through it.
 
-That is also how a beta programme works, how a regional rollout works, and how you give
+That is also how a beta program works, how a regional rollout works, and how you give
 an unhappy customer an escape hatch at 4pm on a Friday without shipping anything.
 
 ---
 
 ## Try this if you have time
 
-- Combine conditions: `companySize` is `enterprise` **and** `state` is `NY`. Only
-  `enterprise@example.com` matches, and only because of the discovery you ran in
-  Module 07.
-- Put `recall.headerTheme` behind a target group, so `branded` reaches one customer
+- Inspect the page and navigate to your network tab. Now refresh and search for fm-config.
+    - If you switch to the response tab, you can view the properties that have been made available in the code
+- Now try to combine conditions: `companySize` is `enterprise` **OR** `state` is `MA`. What
+  do you expect to happen? Did it match what you saw?
+- Put `recall.headerTheme` behind a target group, so `vibrant` reaches one customer
   and everyone else keeps `default`.
 - Set a percentage split on a flag you have targeted, and work out which applies first.
 

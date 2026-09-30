@@ -55,7 +55,7 @@ dies before its first step runs. More on that below.
 
 ---
 
-## 2. Set your organization values
+## 2. Set your sub-organization values
 
 Still in your sub-organization, go to **Configurations → Properties**. These four apply
 across all three environments, so they are set once.
@@ -71,8 +71,8 @@ across all three environments, so they are set once.
 password for the three demo accounts you will sign in as later —
 `small@example.com`, `midmarket@example.com` and `enterprise@example.com`. Pick
 something you will still have in an hour. If it is missing when the database deploys,
-the accounts will fail to be created, the deploy still succeeds, and you find out at the
-sign-in page.
+the accounts will fail to be created, the deploy still succeeds, and you will be unable
+to sign-in.
 
 ### What you inherit
 
@@ -99,8 +99,7 @@ There is no failed step to inspect, because nothing ran. This is why `FM_KEY` is
 `unset` rather than absent.
 
 **A property cannot be saved empty.** Hence the literal string `unset` as the
-convention for "nothing yet" — the workflows recognise it and treat it as empty. It
-also gives you something you can overwrite later, which a blank field does not.
+convention for "nothing yet" — the workflows recognise it and treat it as empty.
 
 ---
 
@@ -109,7 +108,8 @@ also gives you something you can overwrite later, which a blank field does not.
 `app-recall-tracker` is the repository holding the workflows that release the other
 five together. It needs to exist in Unify for step 5.
 
-Connect the repository as an Application and link your three environments to it. You
+Navigate to _Applications_ in the side bar and create a new application.
+Connect the repository and link your three environments to it. You
 will come back in Module 05 to attach the five components; for now it only needs to
 exist and know about your environments.
 
@@ -119,10 +119,7 @@ exist and know about your environments.
 
 From the Application, run the **Verify Setup** workflow. Choose `DEV`.
 
-Give it two to three minutes. Most of that is the runner starting up, not the checks —
-it has not hung.
-
-It checks five things:
+Give it two to three minutes. It checks five things:
 
 | Check | What it proves |
 |---|---|
@@ -158,12 +155,10 @@ Setup is usable, with warnings.
 `secrets` warns about three, all of them optional API keys your facilitator has left
 out: `ANTHROPIC_API_KEY`, `VOYAGE_API_KEY` and `ADMIN_PASSWORD`. The Recall Advisor and
 semantic search are reduced without the first two, and the admin endpoints stay
-disabled without the third — which is intended.
+disabled without the third. Feel free to assign the `ADMIN_PASSWORD` if you want to
+see and use the admin UI from the Webinar.
 
-Do not try to fix any of them. Each WARN line says either which module it starts to
-matter in, or that it is expected.
-
-A **FAIL** is different, and the line names what to fix. Correct it in the UI and run
+Any **FAIL** lines indicate actual problems and the line names what to fix. Correct it in the UI and run
 the workflow again; it is safe to run as many times as you like.
 
 Then run it twice more, for `STAGING` and `PROD`. Configuration is per environment, so

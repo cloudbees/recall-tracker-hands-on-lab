@@ -2,8 +2,8 @@
 
 **40 minutes** · Session 2: Release orchestration
 
-Five components that each know how to build and deploy themselves, and nothing that
-knows they belong together. This module closes that gap.
+At the end of session 1, you had five components that each know how to build themselves, and nothing that
+knows how they belong together or interact. This module closes that gap.
 
 You already created the Application in Module 02, to have somewhere to run Verify Setup
 from. Now it gets its actual job.
@@ -15,7 +15,7 @@ from. Now it gets its actual job.
 Open your Application and add all five: `recall-db`, `recall-worker`,
 `recall-ai-service`, `recall-core-api`, `recall-web-ui`.
 
-> **This is where exact names start to matter.** The Application's workflow looks up
+> **This is the first place the exact names matter.** The Application's workflow looks up
 > each component by name. A component you called something else is not an error — it is
 > simply absent from the release, and the first you will know about it is a service
 > that never deployed. If you renamed one earlier, fix it now.
@@ -61,11 +61,6 @@ which — *before* it evaluates any expression. At the moment it needs to know w
 `recall-db/deploy.yaml` lives, `${{ vars.DOCKERHUB_USER }}` has not been evaluated yet
 and does not exist. So the path has to be literal text.
 
-This is the first of several places in this workshop where **when** something is
-resolved matters more than what it says. It is also a useful thing to recognise in your
-own pipelines: an expression in the wrong position fails in a way that looks like a
-typo.
-
 ---
 
 ## 3. Read the deployer
@@ -88,11 +83,6 @@ call returns 503.
 Everything else runs in parallel. `Worker`, `AI-Service` and `Core-API` have no
 relationship to each other, so making them queue would add minutes per environment and
 guarantee nothing.
-
-> An earlier version of this file chained all five in series. That was conservative
-> rather than correct: three extra sequential deploys per environment, times three
-> environments, for an ordering nobody needed. Being able to say *why* a dependency
-> exists is what lets you delete the ones that do not.
 
 ### The manifest job
 
@@ -124,15 +114,12 @@ those two lines the called workflow starts with nothing — no `namespace`, no
 
 ### And now `component-repo` makes sense
 
-In Module 03 you left `component-repo` as `self` and I promised an explanation.
+In Module 03 you may remember that you left `component-repo` as `self`.
 
 A called workflow runs in the **caller's** repository context. When the deployer calls
 `recall-db/deploy.yaml`, that workflow's checkout step would clone
 `app-recall-tracker` — the caller — rather than `recall-db`, and then fail to find the
 Helm chart it needs. Passing an explicit clone URL is what corrects it.
-
-This is the same lesson as `uses:` in a different costume: what looks like the obvious
-default is wrong once workflows start calling each other.
 
 ---
 
@@ -150,7 +137,7 @@ That is deliberate. What starts it is a **release**, which is Module 06.
 
 - [ ] Five components attached to the Application
 - [ ] `YOUR-GITHUB-ORG` gone from `deployer.yaml`, committed to `main`
-- [ ] You can say why `DB` runs before `Worker`, and why `Worker` does not run before
+- [ ] You can say why `DB` runs before `Worker`, and why `Worker` runs at the same time as
       `AI-Service`
 - [ ] You can say why `uses:` cannot take a variable
 

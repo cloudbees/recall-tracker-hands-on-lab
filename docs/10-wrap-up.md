@@ -37,7 +37,7 @@ promise, and the difference shows up on the day a dependency changes underneath 
 how to deploy itself. Only the Application knows that the database goes first, and only
 because someone wrote down why.
 
-**When something resolves matters as much as what it says.** `uses:` before expressions.
+**_When_ something resolves matters as much as what it says.** `uses:` before expressions.
 Configuration read at deploy time. A called workflow running in the caller's context. Most
 of the confusing failures in this workshop were timing, wearing a costume.
 
@@ -75,19 +75,15 @@ Two things worth knowing:
 - **The repositories are yours.** They are in your GitHub account, with their own
   history, and they do not disappear. So are the container images in your DockerHub
   account.
-- **The URLs stop working.** They pointed at namespaces in a cluster built for this
+- **The URLs will stop working.** They point at namespaces in a cluster built for this
   workshop.
 
-If you want to keep a copy running, that is a conversation worth having with your
-facilitator rather than something to attempt afterwards — it needs a cluster, a
-certificate and DNS, which is the part the workshop did for you.
+You will have about a week to continue experimenting in the workshop environment at which
+point the URL's will be torn down.
 
 ---
 
 ## Questions
-
-Raise your hand and ask the facilitator.
-
 ---
 
 **Back to the start:** [Hands-on lab](../README.md)
