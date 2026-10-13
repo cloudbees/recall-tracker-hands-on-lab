@@ -39,7 +39,9 @@ uses: YOUR-GITHUB-ORG/recall-db/.cloudbees/workflows/deploy.yaml
   component-repo: https://github.com/YOUR-GITHUB-ORG/recall-db.git
 ```
 
-Commit to `main`.
+Commit to `main`, then run **Verify Setup** again for `DEV`. The **Application** row
+should now read `PASS`. Before this edit it was a warning; with components already
+deployed it becomes a failure, because a release cannot start until it is fixed.
 
 > **Match GitHub's capitalisation exactly.** If your account is `AcmeDev`, write
 > `AcmeDev` — not `acmedev`. GitHub treats those as the same account, so nothing you do
@@ -137,6 +139,7 @@ That is deliberate. What starts it is a **release**, which is Module 06.
 
 - [ ] Five components attached to the Application
 - [ ] `YOUR-GITHUB-ORG` gone from `deployer.yaml`, committed to `main`
+- [ ] Verify Setup's **Application** row reads `PASS`
 - [ ] You can say why `DB` runs before `Worker`, and why `Worker` runs at the same time as
       `AI-Service`
 - [ ] You can say why `uses:` cannot take a variable

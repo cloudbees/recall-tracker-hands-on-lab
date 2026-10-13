@@ -119,7 +119,7 @@ exist and know about your environments.
 
 From the Application, run the **Verify Setup** workflow. Choose `DEV`.
 
-Give it two to three minutes. It checks five things:
+Give it two to three minutes. It checks six things:
 
 | Check | What it proves |
 |---|---|
@@ -128,6 +128,7 @@ Give it two to three minutes. It checks five things:
 | dockerhub | Your username and token actually authenticate |
 | cluster | Your kubeconfig reaches the cluster and can deploy into your namespace |
 | database | The database is reachable and has the extension the app needs |
+| application | `deployer.yaml` names your own account or organization for every component |
 
 ### Expect WARN, not PASS
 
@@ -139,11 +140,12 @@ A clean run at this stage looks like this:
   PASS  dockerhub
   PASS  cluster
   PASS  database
+  WARN  application
 
 Setup is usable, with warnings.
 ```
 
-**Two WARNs is the correct result.** Everything they name is deliberately not set yet.
+**Three WARNs is the correct result.** Everything they name is deliberately not set yet.
 
 `variables` warns about two:
 
@@ -157,6 +159,10 @@ out: `ANTHROPIC_API_KEY`, `VOYAGE_API_KEY` and `ADMIN_PASSWORD`. The Recall Advi
 semantic search are reduced without the first two, and the admin endpoints stay
 disabled without the third. Feel free to assign the `ADMIN_PASSWORD` if you want to
 see and use the admin UI from the Webinar.
+
+`application` warns that `YOUR-GITHUB-ORG` is still in `deployer.yaml`. You replace it in
+Module 05. Once your components are deployed, this warning becomes a failure, because a
+release cannot start until it is fixed.
 
 Any **FAIL** lines indicate actual problems and the line names what to fix. Correct it in the UI and run
 the workflow again; it is safe to run as many times as you like.
