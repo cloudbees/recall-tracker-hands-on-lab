@@ -10,7 +10,7 @@ flags already waiting for you, which get created by the code.
 
 ## 1. Run a discovery
 
-Sign in to your `PROD` URL and create a new account to start a discovery.
+Navigate to your `PROD` URL and create a new account to start a net-new discovery.
 
 The discovery calls `recall-worker`, which queries the FDA's openFDA API live, and
 builds a compliance matrix from what comes back.
@@ -20,7 +20,7 @@ builds a compliance matrix from what comes back.
 > that state returns nothing, correctly. If your matrix is empty, try `Medical Devices`
 > with `NY` and see if you get a different result.
 >
-> You can either change the URL from matrix to discovery or create a new account to
+> You can either change the URL from /matrix to /discover or create a new account to
 > get back to the discovery page.
 
 ---
